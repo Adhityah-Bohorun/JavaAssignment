@@ -99,6 +99,28 @@ public class CustomerList extends JFrame {
 
         });
 
+        JButton btnView = new JButton("View Details");
+        buttonPanel.add(btnView);
+
+        btnView.addActionListener(e -> {
+
+        int row = table.getSelectedRow();
+
+        if(row == -1){
+            JOptionPane.showMessageDialog(this,"Select a customer first");
+            return;
+        }
+
+        String id = model.getValueAt(row,0).toString();
+        String name = model.getValueAt(row,1).toString();
+        String phone = model.getValueAt(row,2).toString();
+        String license = model.getValueAt(row,3).toString();
+
+        CustomerDetails details = new CustomerDetails(this,id,name,phone,license);
+        details.setVisible(true);
+
+    });
+
     }
 
     // METHOD USED BY FORM TO ADD DATA
